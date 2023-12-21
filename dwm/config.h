@@ -12,6 +12,10 @@ static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
 static const char *mednextcmd[] = { "playerctl", "next", NULL };
 static const char *medprevcmd[] = { "playerctl", "previous", NULL };
 
+/* Backlight*/
+static const char *brupcmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
+static const char *brdowncmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 15;        /* gaps between windows */
@@ -80,10 +84,15 @@ static const Key keys[] = {
         { 0, XF86XK_AudioNext, spawn, {.v = mednextcmd } },
         { 0, XF86XK_AudioPrev, spawn, {.v = medprevcmd } },
 
+        /*Volume*/
         { 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
         { 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
         { 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
- 
+        
+        /*Brightness*/
+        { 0, XF86XK_MonBrightnessUp, spawn, {.v = brupcmd} },
+        { 0, XF86XK_MonBrightnessDown, spawn, {.v = brdowncmd} },
+
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
